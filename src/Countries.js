@@ -1,12 +1,12 @@
 import {  Link } from 'react-router-dom'
-const Countries = ({country}) => {
+const Countries = ({country, theme}) => {
 
 
     
     return ( 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 z-10 gap-5 mt-8">
             {country.map((count, index) =>(
-                <div className="bg-lightMode-100 dark:bg-darkMode-100 rounded-lg overflow-hidden shadow-md milo">
+                <div className="rounded-lg overflow-hidden shadow-md milo" style={{backgroundColor: theme.ui}}>
                     <Link to={`/CountryDet/${count.name.common}`} key={index}>
                             <img src={count.flags.png} alt={count.name.common} className="w-full h-32 sm:h-48 object-cover"/>
                             <div className="rounded-lg p-5">

@@ -1,10 +1,13 @@
 import useFetch from './Hooks/useFetch'
 import { useParams, Link, useLocation, useHistory } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ThemeContext } from './Hooks/ThemeContext';
 
-const CountryDet = ({light, elem}) => {
+const CountryDet = () => {
     const { id } = useParams()
     const { data: res, isPending, error} = useFetch("https://restcountries.com/v3.1/name/" + id);
+    const {isLightTheme, light, dark} = useContext(ThemeContext);
+    const theme = isLightTheme ? light : dark;
 
     let history = useHistory()
     const [data, setData] = useState(null);
@@ -22,17 +25,17 @@ const CountryDet = ({light, elem}) => {
     const goHomeBtn = () => history.push('/')
 
     return ( 
-        <div className="grid py-24 country-details bg-lightMode-200 dark:bg-darkMode-200 h-screen">
+        <div className="grid py-24 country-details h-screen" style={{backgroundColor: theme.bg}}>
             {
                  data ? (
                     <div className='mx-5 grid gap-5'>
                         <div className="flex items-center w-24">
-                            <span className={`w-10 h-10 flex items-center justify-end bg-lightMode-100 dark:bg-darkMode-100 gibo`}>
+                            <span className={`w-10 h-10 flex items-center justify-end gibo`} style={{backgroundColor: theme.ui}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                                 </svg>                      
                             </span>
-                                <button onClick={goHomeBtn} className={`w-14 h-10 rounded-sm bg-lightMode-100 dark:bg-darkMode-100 text-start p-2 gibo`} id="back">Back</button>                        
+                                <button onClick={goHomeBtn} className={`w-14 h-10 rounded-sm text-start p-2 gibo`} id="back" style={{backgroundColor: theme.ui}}>Back</button>                        
                         </div>
                         <div className="grid md:grid-cols-2 items-center gap-10">
                             <div className="">
@@ -61,7 +64,7 @@ const CountryDet = ({light, elem}) => {
                                     <div className="grid grid-cols-3 mb-4 gap-3 gibs">
                                             {
                                             data.borders ?
-                                            data.borders.map(bord => <div className="bg-lightMode-100 dark:bg-darkMode-100 flex items-center justify-center px-3 rounded-sm font-light text-center gibo">{bord}</div>)
+                                            data.borders.map(bord => <div className="flex items-center justify-center px-3 rounded-sm font-light text-center gibo" style={{backgroundColor: theme.ui}}>{bord}</div>)
                                             : null                                
                                             }
                                     </div>
