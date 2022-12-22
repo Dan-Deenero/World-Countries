@@ -2,15 +2,10 @@ import Header from "./Header";
 import Home from "./Home";
 import CountryDet from "./CountryDet";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import { useEffect, useState } from "react";
-import ThemeContextProvider, { ThemeContext } from "./Hooks/ThemeContext";
+import ThemeContextProvider from "./Hooks/ThemeContext";
 
 
 function App() {
-  const [text, setText] = useState("Dark Mode")
-
-
-  
 
   return (
     <Router>

@@ -1,5 +1,3 @@
-import useDark from "./Hooks/useDark";
-import { useState } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "./Hooks/ThemeContext";
 

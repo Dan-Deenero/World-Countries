@@ -1,5 +1,5 @@
 import useFetch from './Hooks/useFetch'
-import { useParams, Link, useLocation, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState, useContext } from 'react';
 import { ThemeContext } from './Hooks/ThemeContext';
 
@@ -26,6 +26,8 @@ const CountryDet = () => {
 
     return ( 
         <div className="grid py-24 country-details h-screen" style={{backgroundColor: theme.bg}}>
+            {error && <div>{error}</div>}
+            {isPending && <div>Loadin...</div>}
             {
                  data ? (
                     <div className='mx-5 grid gap-5'>
