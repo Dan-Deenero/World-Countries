@@ -6,8 +6,10 @@ import useFetch from './Hooks/useFetch';
 const Home = () => {
     const {data: result, isPending, error} = useFetch("https://restcountries.com/v3.1/all")
     const [data, setData] = useState([]);
+    
     const {isLightTheme, light, dark} = useContext(ThemeContext);
     const theme = isLightTheme ? light : dark;
+
 
     
 
@@ -55,7 +57,7 @@ const Home = () => {
 
     return ( 
 
-            <main className={` px-14 w-full h-screen py-24`} style={{backgroundColor: theme.bg, color: theme.syntax}}>    
+            <main className={` px-14 w-full py-24`} style={{backgroundColor: theme.bg, color: theme.syntax}}>    
                 <div className="">
                     <div className="flex flex-col lg:flex-row justify-between my-9 ">
                         <div className=" mb-5 flex items-center shadow-lg w-60">

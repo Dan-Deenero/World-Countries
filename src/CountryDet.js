@@ -6,8 +6,10 @@ import { ThemeContext } from './Hooks/ThemeContext';
 const CountryDet = () => {
     const { id } = useParams()
     const { data: res, isPending, error} = useFetch("https://restcountries.com/v3.1/name/" + id);
+
     const {isLightTheme, light, dark} = useContext(ThemeContext);
     const theme = isLightTheme ? light : dark;
+
 
     let history = useHistory()
     const [data, setData] = useState(null);
@@ -25,11 +27,11 @@ const CountryDet = () => {
     const goHomeBtn = () => history.push('/')
 
     return ( 
-        <div className="grid py-24 country-details h-screen" style={{backgroundColor: theme.bg}}>
+        <div className="grid py-24 country-details h-screen" style={{backgroundColor: theme.bg, color: theme.syntax}}>
             {error && <div>{error}</div>}
-            {isPending && <div>Loadin...</div>}
+            {isPending && <div>...loading</div>}
             {
-                 data ? (
+                 data &&
                     <div className='mx-5 grid gap-5'>
                         <div className="flex items-center w-24">
                             <span className={`w-10 h-10 flex items-center justify-end gibo`} style={{backgroundColor: theme.ui}}>
@@ -63,7 +65,7 @@ const CountryDet = () => {
                                     <div className="mb-5">
                                         <h5 className="mr-4 font-semibold">Border Countries:</h5>
                                     </div>
-                                    <div className="grid grid-cols-3 mb-4 gap-3 gibs">
+                                    <div className="grid grid-cols-7 mb-4 gap-3 gibs">
                                             {
                                             data.borders ?
                                             data.borders.map(bord => <div className="flex items-center justify-center px-3 rounded-sm font-light text-center gibo" style={{backgroundColor: theme.ui}}>{bord}</div>)
@@ -74,7 +76,6 @@ const CountryDet = () => {
                             </div>
                         </div>
                     </div>
-                ) : "loading"
             }
         </div> 
             

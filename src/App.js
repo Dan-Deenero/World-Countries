@@ -9,21 +9,21 @@ function App() {
 
   return (
     <Router>
-        <div className="h-full">
-          <div className="">
+      <div className="h-full">
+        <div className="">
           <ThemeContextProvider>
-                <Header/>
-                <Switch>
-                  <Route exact path="/">
-                      <Home />
-                  </Route>
-                  <Route path="/CountryDet/:id" component={CountryDet}>
-                    <CountryDet/>
-                  </Route>
-                </Switch>
+            <Header/>
+            <Switch>
+              <Route exact path="/">
+                  <Home />
+              </Route>
+              <Route path="/CountryDet/:id" component={CountryDet}>
+                <CountryDet/>
+              </Route>
+            </Switch>
           </ThemeContextProvider>
-          </div>
         </div>
+      </div>
     </Router>
   );
 }
