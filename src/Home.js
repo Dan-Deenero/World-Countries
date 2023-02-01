@@ -7,8 +7,7 @@ const Home = () => {
     const {data: result, isPending, error} = useFetch("https://restcountries.com/v3.1/all")
     const [data, setData] = useState([]);
     
-    const {isLightTheme, light, dark} = useContext(ThemeContext);
-    const theme = isLightTheme ? light : dark;
+    const {theme} = useContext(ThemeContext);
 
 
     
